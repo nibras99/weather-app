@@ -25,7 +25,7 @@ let dateBuilder = (d) =>{
 
 
 const App = () => {
-  let [query, setQuery] = useState("Sweden")
+  let [query, setQuery] = useState()
   let [weather, setWeather] = useState({})
   let [veckaWeather, setVeckaWeather] = useState([{}])
   let handlEvent = (e) =>{
@@ -112,7 +112,7 @@ if(veckaWeather.cod != "404"){
   let testar2 = lista.map(elem => elem.dt_txt )
   let b = testar2[0]
   
-  let b1 = b.substr(0,10)
+  
                                
   for(let i = 0; i < testar.length; i++){
     let str = testar2[i].substr(0,10)
@@ -252,7 +252,7 @@ let time = ""
           
       </div>
 
-        ):(<div><h1>City not found, please enter a new one</h1></div>)}    
+        ):(<div></div>)}    
  
       </main>
      
