@@ -15,12 +15,29 @@ let dateBuilder = (d) =>{
   let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
-  let day = days[d.getDay()]
+  let day = days[d.getDay()-1]
   let date = d.getDate()
   let month = months[d.getMonth()]
   let year = d.getFullYear()
   
   return <>{day} {date} {month} {year}</>
+}
+
+let getDay = (id) =>{
+  let d = new Date()
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  let day = days[d.getDay()-1+id]
+
+  if(d.getDay()-1+id > 6){
+  
+  let sum =  d.getDay()-1+id - 7
+
+day = days[sum]
+  }
+
+ 
+
+  return day
 }
 
 
@@ -90,24 +107,14 @@ let test5 = []
 
 let lista = veckaWeather.list
 
-if((typeof weather.main == "undefined")){
-  
-  
-}
-
-
 
 
 if(veckaWeather.cod != "404"){
 
-  console.log(veckaWeather)
-  console.log(veckaWeather.length)
 
   if(veckaWeather.length!=1){
     //VISA VEKTOR
-    console.log("visa")
 
-    console.log("EROEROERO")
     let testar = lista.map(elem => <TemperatureWeek txt = {elem.dt_txt} temp = {Math.round(elem.main.temp)} väder = {elem.weather[0].main}/>)
   let testar2 = lista.map(elem => elem.dt_txt )
   let b = testar2[0]
@@ -142,6 +149,25 @@ if(veckaWeather.cod != "404"){
 
 }
   
+let vecka5 = ""
+
+if(test5.length > 0){
+  vecka5 =   <span className = "todo-app">
+  {test5}
+  </span>
+}
+
+let dag1 = ""
+if(test.length>0){
+  dag1 = "Today"
+
+  
+}
+
+let dag2 = "Tomorrow"
+let dag3 = getDay(2)
+let dag4 = getDay(3)
+let dag5 = getDay(4)
 
 
 let feelsLike = ""
@@ -152,7 +178,7 @@ if(typeof weather.main == "undefined"){
 
 else if(weather.weather[0].main =="Clouds"){
 
-  t = <span style = {{color:"black"}}><WiCloud size = {100} > </WiCloud></span>
+  t = <span style = {{color:"lightgrey"}}><WiCloud size = {100} > </WiCloud></span>
   feelsLike = Math.round(weather.main.feels_like) - 1
 
 }
@@ -166,7 +192,7 @@ else if(weather.weather[0].main == "Rain"){
   feelsLike = Math.round(weather.main.feels_like) - 3
 }
 else if(weather.weather[0].main == "Clear"){
-  t = <span style = {{color:"black"}}><WiDaySunny size = {100}></WiDaySunny></span>
+  t = <span style = {{color:"sun"}}><WiDaySunny size = {100}></WiDaySunny></span>
   feelsLike = Math.round(weather.main.feels_like) + 2
 }
 else if(weather.weather[0].main == "Mist"){
@@ -179,6 +205,14 @@ let tid = (time) =>{
   let today = new Date()
 let h = today.getHours()
 let m = today.getMinutes()
+
+if(h < 10){
+  h = "0"+today.getHours()
+}
+if(m < 10){
+  m = "0" + today.getMinutes()
+}
+
 time = h + ":" + m
   return time
 }
@@ -226,29 +260,33 @@ let time = ""
 
         <hr></hr>
       
+      <h1 className = "text2">{dag1}</h1>
         <div className = "todo-app">
         {test}
         </div>
+        
         <hr></hr>
+        <h1 className = "text2">{dag2}</h1>
         <span className = "todo-app">
         {test1}
         </span>
         <hr></hr>
+        <h1 className = "text2">{dag3}</h1>
         <span className = "todo-app">
         {test2}
         </span>
         <hr></hr>
+        <h1 className = "text2">{dag4}</h1>
         <span className = "todo-app">
         {test3}
         </span>
         <hr></hr>
+        <h1 className = "text2">{dag5}</h1>
         <span className = "todo-app">
         {test4}
         </span>
         <hr></hr>
-        <span className = "todo-app">
-        {test5}
-        </span>
+      {vecka5}
           
       </div>
 

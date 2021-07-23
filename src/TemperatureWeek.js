@@ -4,15 +4,15 @@ import {WiDaySunny ,WiCloud, WiFog, WiRain, WiTime2} from "weather-icons-react"
 
 const TemperatureWeek = ({txt, temp, väder}) => {
 
+txt = txt.substr(4,12)
+txt = txt.substr(6)
+
 
     
 let t = ""
 
-
  if(väder =="Clouds"){
-
-  t = <WiCloud size = {100} > </WiCloud>
-
+  t = <span style = {{color:"lightgrey"}}><WiCloud size = {100}></WiCloud></span>
 
 }
 else if(väder == "Haze"){
@@ -21,11 +21,11 @@ else if(väder == "Haze"){
  
 }
 else if(väder == "Rain"){
-  t = <WiRain size = {100}></WiRain>
+  t = <span style = {{color:"darkblue"}}><WiRain size = {100}></WiRain></span>
 
 }
 else if(väder == "Clear"){
-  t = <WiDaySunny size = {100}></WiDaySunny>
+  t = <span style = {{color:"yellow"}}><WiDaySunny size = {100}></WiDaySunny></span>
 
 }
 else if(väder == "Mist"){
@@ -41,27 +41,19 @@ else if(väder == "Mist"){
         <div className = "text">
             
                 <li>
-                    
-            <FcCalendar/>
-            {str}
-
-            <span className = "mellanrum">
-        
-            </span>
-            
-          <span className = "mellanrum1">
-            
+                   
              <WiTime2/>
-             {str1}
-             
-             </span>
+             {txt}
+             <span className = "mellanrum"> </span>
 
              <span className = "mellanrum">
+             <span className = "mellanrum"> </span>
              {t}
             {väder}
             </span>
 
              <span className = "mellanrum1">
+             <span className = "mellanrum"> </span>
             {temp} °C
             </span>
             <hr></hr>
