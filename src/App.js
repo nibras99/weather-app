@@ -41,6 +41,9 @@ day = days[sum]
 }
 
 
+
+
+
 const App = () => {
   let [query, setQuery] = useState()
   let [weather, setWeather] = useState({})
@@ -115,7 +118,7 @@ if(veckaWeather.cod != "404"){
   if(veckaWeather.length!=1){
     //VISA VEKTOR
 
-    let testar = lista.map(elem => <TemperatureWeek txt = {elem.dt_txt} temp = {Math.round(elem.main.temp)} väder = {elem.weather[0].main}/>)
+    let testar = lista.map(elem => <TemperatureWeek txt = {elem.dt_txt} temp = {Math.round(elem.main.temp)} väder = {elem.weather[0].main} feels_like = {elem.main.feels_like}/>)
   let testar2 = lista.map(elem => elem.dt_txt )
   let b = testar2[0]
   
@@ -151,23 +154,30 @@ if(veckaWeather.cod != "404"){
   
 let vecka5 = ""
 
+let dag1 = ""
+let dag2 = "Tomorrow"
+let dag3 = getDay(2)
+let dag4 = getDay(3)
+let dag5 = getDay(4)
+let dag6 = ""
+
+
 if(test5.length > 0){
   vecka5 =   <span className = "todo-app">
   {test5}
   </span>
+  dag6 = getDay(5)
+
 }
 
-let dag1 = ""
+
 if(test.length>0){
   dag1 = "Today"
 
   
 }
 
-let dag2 = "Tomorrow"
-let dag3 = getDay(2)
-let dag4 = getDay(3)
-let dag5 = getDay(4)
+
 
 
 let feelsLike = ""
@@ -286,6 +296,7 @@ let time = ""
         {test4}
         </span>
         <hr></hr>
+        <h1 className = "text2">{dag6}</h1>
       {vecka5}
           
       </div>

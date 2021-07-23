@@ -2,7 +2,7 @@ import React from 'react'
 import {FcCalendar} from "react-icons/fc"
 import {WiDaySunny ,WiCloud, WiFog, WiRain, WiTime2} from "weather-icons-react"
 
-const TemperatureWeek = ({txt, temp, väder}) => {
+const TemperatureWeek = ({txt, temp, väder, feels_like}) => {
 
 txt = txt.substr(4,12)
 txt = txt.substr(6)
@@ -56,6 +56,7 @@ else if(väder == "Mist"){
              <span className = "mellanrum"> </span>
             {temp} °C
             </span>
+            
             <hr></hr>
             </li>
            
