@@ -49,6 +49,7 @@ const App = () => {
   let [weather, setWeather] = useState({})
   let [veckaWeather, setVeckaWeather] = useState([{}])
   let handlEvent = (e) =>{
+   
   setQuery(e.target.value)
 
 }
@@ -112,10 +113,12 @@ let lista = veckaWeather.list
 
 
 
-if(veckaWeather.cod != "404"){
+if(veckaWeather.cod != "404" && veckaWeather.cod != "400"){
 
-
+ 
   if(veckaWeather.length!=1){
+
+   
     //VISA VEKTOR
 
     let testar = lista.map(elem => <TemperatureWeek txt = {elem.dt_txt} temp = {Math.round(elem.main.temp)} väder = {elem.weather[0].main} feels_like = {elem.main.feels_like}/>)
@@ -146,6 +149,7 @@ if(veckaWeather.cod != "404"){
       test5.push(testar[i])
       }
     }
+    
 
   }
 
@@ -202,7 +206,7 @@ else if(weather.weather[0].main == "Rain"){
   feelsLike = Math.round(weather.main.feels_like) - 3
 }
 else if(weather.weather[0].main == "Clear"){
-  t = <span style = {{color:"sun"}}><WiDaySunny size = {100}></WiDaySunny></span>
+  t = <span style = {{color:"yellow"}}><WiDaySunny size = {100}></WiDaySunny></span>
   feelsLike = Math.round(weather.main.feels_like) + 2
 }
 else if(weather.weather[0].main == "Mist"){
